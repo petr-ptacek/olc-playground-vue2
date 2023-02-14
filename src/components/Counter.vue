@@ -5,8 +5,8 @@
     <h1>Doubled</h1>
     <div class="counter__value">{{ doubled }}</div>
     <div class="counter__actions">
-      <button @click="increment">Increment</button>
-      <button @click="decrement">Decrement</button>
+      <button v-show="counter < 10" @click="increment">Increment</button>
+      <button v-if="counter > -10" @click="decrement">Decrement</button>
     </div>
   </div>
 </template>
@@ -84,7 +84,7 @@ h1 {
   color: black;
   background: lightblue;
   padding: 20px;
-  max-width: 250px;
+  width: 300px;
   display: flex;
   justify-content: center;
   flex-direction: column;
