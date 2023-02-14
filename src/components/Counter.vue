@@ -1,7 +1,7 @@
 <template>
   <div class="counter" :class="classDefs" :style="styleDefs">
     <div v-html="msg"></div>
-    <div class="counter__value">{{ counter }}</div>
+    <input v-model="counter" class="counter__value" />
     <h1>Doubled</h1>
     <div class="counter__value">{{ doubled }}</div>
     <div class="counter__actions">
@@ -98,6 +98,8 @@ h1 {
 
 .counter__value {
   font-size: 25px;
+  width: 50%;
+  text-align: center;
   font-weight: 700;
 }
 
