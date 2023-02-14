@@ -16,6 +16,24 @@ export default {
       counter: 0
     }
   },
+  beforeCreate() {
+    console.log("hook:beforeCreate");
+  },
+  created() {
+    console.log("hook:created");
+  },
+  beforeUpdate() {
+    console.log("hook:beforeUpdate");
+  },
+  updated() {
+    console.log("hook:updated");
+  },
+  beforeDestroy() {
+    console.log("hook:beforeDestroy");
+  },
+  destroyed() {
+    console.log("hook:destroyed");
+  },
   methods: {
     increment() {
       this.counter++;
