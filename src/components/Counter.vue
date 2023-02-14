@@ -1,5 +1,6 @@
 <template>
   <div class="counter">
+    <h1 v-html="msg"></h1>
     <div class="counter__value">{{ counter }}</div>
     <div class="counter__actions">
       <button @click="increment">Increment</button>
@@ -13,7 +14,8 @@ export default {
   name: "TheCounter",
   data() {
     return {
-      counter: 0
+      counter: 0,
+      msg: "<h1>Counter</h1>"
     }
   },
   beforeCreate() {
@@ -49,6 +51,10 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  font-size: 16px;
+}
+
 .counter {
   color: black;
   background: lightblue;
