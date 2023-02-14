@@ -1,7 +1,7 @@
 <template>
   <div class="counter" :class="classDefs" :style="styleDefs">
     <div v-html="msg"></div>
-    <input v-model="counter" class="counter__value" />
+    <input v-model="counter" class="counter__value"/>
     <h1>Doubled</h1>
     <div class="counter__value">{{ doubled }}</div>
     <div class="counter__actions">
@@ -14,6 +14,16 @@
 <script>
 export default {
   name: "TheCounter",
+  props: {
+    counterValue: {
+      type: Number,
+      required: true,
+      default: 0,
+      validator(val) {
+        return val >= 0;
+      }
+    }
+  },
   data() {
     return {
       counter: 0,
@@ -48,6 +58,7 @@ export default {
   },
   created() {
     console.log("hook:created");
+    this.counter = this.counterValue;
   },
   mounted() {
     console.log("hook:mounted");

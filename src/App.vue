@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <TheCounter v-for="i in 10" :key="i"/>
+    <TheCounter :counter-value="i" v-for="i in 10" :key="i"/>
   </div>
 </template>
 
