@@ -1,5 +1,5 @@
 <template>
-  <div class="counter">
+  <div class="counter" :class="classDefs" :style="styleDefs">
     <div v-html="msg"></div>
     <div class="counter__value">{{ counter }}</div>
     <h1>Doubled</h1>
@@ -23,6 +23,19 @@ export default {
   computed: {
     doubled() {
       return this.counter * 2;
+    },
+    classDefs() {
+      return {
+        'counter--danger': this.counter < 0
+      }
+    },
+    styleDefs() {
+      return this.counter > 5 ?
+          {
+            backgroundColor: "lightgreen"
+          } :
+          {}
+
     }
   },
   watch: {
@@ -77,6 +90,10 @@ h1 {
   flex-direction: column;
   align-items: center;
   border-radius: 4px;
+}
+
+.counter--danger {
+  background-color: indianred;
 }
 
 .counter__value {
