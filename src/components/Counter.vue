@@ -22,6 +22,9 @@ export default {
   created() {
     console.log("hook:created");
   },
+  mounted() {
+    console.log("hook:mounted");
+  },
   beforeUpdate() {
     console.log("hook:beforeUpdate");
   },
