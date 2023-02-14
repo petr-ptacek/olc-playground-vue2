@@ -5,13 +5,9 @@
 </template>
 
 <script>
-import TheCounter from "@/components/Counter.vue";
 
 export default {
-  name: "App",
-  components: {
-    TheCounter
-  }
+  name: "App"
 }
 </script>
 
