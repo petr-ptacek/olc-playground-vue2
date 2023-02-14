@@ -1,7 +1,9 @@
 <template>
   <div class="counter">
-    <h1 v-html="msg"></h1>
+    <div v-html="msg"></div>
     <div class="counter__value">{{ counter }}</div>
+    <h1>Doubled</h1>
+    <div class="counter__value">{{ doubled }}</div>
     <div class="counter__actions">
       <button @click="increment">Increment</button>
       <button @click="decrement">Decrement</button>
@@ -16,6 +18,16 @@ export default {
     return {
       counter: 0,
       msg: "<h1>Counter</h1>"
+    }
+  },
+  computed: {
+    doubled() {
+      return this.counter * 2;
+    }
+  },
+  watch: {
+    counter(value, oldValue) {
+      console.log(`counter value changed from ${oldValue} to ${value}`);
     }
   },
   beforeCreate() {
