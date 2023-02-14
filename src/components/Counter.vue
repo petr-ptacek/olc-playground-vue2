@@ -1,5 +1,10 @@
 <template>
   <div class="counter" :class="classDefs" :style="styleDefs">
+    <div class="counter__id">
+      <slot :id="id">
+        counterId {{ id }}
+      </slot>
+    </div>
     <div v-html="msg"></div>
     <input v-model="counter" class="counter__value"/>
     <h1>Doubled</h1>
@@ -8,6 +13,7 @@
       <button v-show="counter < 10" @click="increment">Increment</button>
       <button v-if="counter > -10" @click="decrement">Decrement</button>
     </div>
+    <div v-if="enableDeleteIcon" @click="deleteHandler" class="counter__deleteIcon">&cross;</div>
   </div>
 </template>
 
@@ -15,6 +21,15 @@
 export default {
   name: "TheCounter",
   props: {
+    id: {
+      type: String,
+      required: true
+    },
+    enableDeleteIcon: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     counterValue: {
       type: Number,
       required: true,
@@ -51,31 +66,35 @@ export default {
   watch: {
     counter(value, oldValue) {
       console.log(`counter value changed from ${oldValue} to ${value}`);
+      this.$emit("counter-value-changed", value);
     }
   },
   beforeCreate() {
-    console.log("hook:beforeCreate");
+    console.log(`${this.id}: hook:beforeCreate`);
   },
   created() {
-    console.log("hook:created");
+    console.log(`${this.id}: hook:created`);
     this.counter = this.counterValue;
   },
   mounted() {
-    console.log("hook:mounted");
+    console.log(`${this.id}: hook:mounted`);
   },
   beforeUpdate() {
-    console.log("hook:beforeUpdate");
+    console.log(`${this.id}: hook:beforeUpdate`);
   },
   updated() {
-    console.log("hook:updated");
+    console.log(`${this.id}: hook:updated`);
   },
   beforeDestroy() {
-    console.log("hook:beforeDestroy");
+    console.log(`${this.id}: hook:beforeDestroy`);
   },
   destroyed() {
-    console.log("hook:destroyed");
+    console.log(`${this.id}: hook:destroyed`);
   },
   methods: {
+    deleteHandler() {
+      this.$emit("delete");
+    },
     increment() {
       this.counter++;
     },
@@ -101,6 +120,23 @@ h1 {
   flex-direction: column;
   align-items: center;
   border-radius: 4px;
+  position: relative;
+}
+
+.counter__deleteIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: coral;
+  color: black;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .counter--danger {
