@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <TheCounter />
+    <TheCounter v-for="i in 10" :key="i"/>
   </div>
 </template>
 
@@ -17,8 +17,10 @@ export default {
 
 <style>
 .layout {
+  padding: 10px;
   min-height: 100vh;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 </style>
