@@ -6,7 +6,7 @@
       </slot>
     </div>
     <div v-html="msg"></div>
-    <input v-model="counter" class="counter__value"/>
+    <input v-model.number="counter" type="number" class="counter__value" />
     <h1>Doubled</h1>
     <div class="counter__value">{{ doubled }}</div>
     <div class="counter__actions">
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: "TheCounter",
+  name: 'TheCounter',
   props: {
     id: {
       type: String,
@@ -42,8 +42,8 @@ export default {
   data() {
     return {
       counter: 0,
-      msg: "<h1>Counter</h1>"
-    }
+      msg: '<h1>Counter</h1>'
+    };
   },
   computed: {
     doubled() {
@@ -52,48 +52,49 @@ export default {
     classDefs() {
       return {
         'counter--danger': this.counter < 0
-      }
+      };
     },
     styleDefs() {
       return this.counter > 5 ?
           {
-            backgroundColor: "lightgreen"
+            backgroundColor: 'lightgreen'
           } :
-          {}
+          {};
 
     }
   },
   watch: {
     counter(value, oldValue) {
-      console.log(`counter value changed from ${oldValue} to ${value}`);
-      this.$emit("counter-value-changed", value);
+      console.log(`counter value changed from ${ oldValue } to ${ value }`);
+      this.$emit('counter-value-changed', typeof value === 'number' ? value : 0);
+
     }
   },
   beforeCreate() {
-    console.log(`${this.id}: hook:beforeCreate`);
+    console.log(`${ this.id }: hook:beforeCreate`);
   },
   created() {
-    console.log(`${this.id}: hook:created`);
+    console.log(`${ this.id }: hook:created`);
     this.counter = this.counterValue;
   },
   mounted() {
-    console.log(`${this.id}: hook:mounted`);
+    console.log(`${ this.id }: hook:mounted`);
   },
   beforeUpdate() {
-    console.log(`${this.id}: hook:beforeUpdate`);
+    console.log(`${ this.id }: hook:beforeUpdate`);
   },
   updated() {
-    console.log(`${this.id}: hook:updated`);
+    console.log(`${ this.id }: hook:updated`);
   },
   beforeDestroy() {
-    console.log(`${this.id}: hook:beforeDestroy`);
+    console.log(`${ this.id }: hook:beforeDestroy`);
   },
   destroyed() {
-    console.log(`${this.id}: hook:destroyed`);
+    console.log(`${ this.id }: hook:destroyed`);
   },
   methods: {
     deleteHandler() {
-      this.$emit("delete");
+      this.$emit('delete');
     },
     increment() {
       this.counter++;
@@ -102,7 +103,7 @@ export default {
       this.counter--;
     }
   }
-}
+};
 </script>
 
 <style scoped>

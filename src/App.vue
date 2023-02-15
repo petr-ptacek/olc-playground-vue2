@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: "App",
+  name: 'App',
   data() {
     return {
       counters: Array.from({ length: 10 }, (v_, idx) => ({
@@ -31,7 +31,7 @@ export default {
         enableDeleteIcon: !!(idx % 2),
         counterValue: idx
       }))
-    }
+    };
   },
   computed: {
     sum() {
@@ -43,10 +43,14 @@ export default {
       this.counters = this.counters.filter(counter => counter.id !== id);
     },
     counterValueChangedHandler(id, value) {
-      this.counters[id].counterValue = value;
+      const counter = this.counters.find(counter => counter.id === id);
+
+      if ( counter ) {
+        counter.counterValue = value;
+      }
     }
   }
-}
+};
 </script>
 
 <style>
