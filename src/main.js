@@ -1,11 +1,11 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue     from 'vue';
+import App     from './App.vue';
 
-import './assets/main.css'
-import Counter from "@/components/Counter.vue";
+import './assets/main.css';
+import Counter from '@/components/Counter.vue';
 
-Vue.component("TheCounter", Counter);
+Vue.component('TheCounter', Counter);
 
 new Vue({
   render: (h) => h(App)
-}).$mount('#app')
+}).$mount('#app');
