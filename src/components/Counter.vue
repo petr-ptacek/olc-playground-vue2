@@ -71,7 +71,7 @@ export default {
     }
   },
   beforeCreate() {
-    console.log(`${ this.id }: hook:beforeCreate`);
+    console.log(`hook:beforeCreate`);
   },
   created() {
     console.log(`${ this.id }: hook:created`);
